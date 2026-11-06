@@ -1,0 +1,28 @@
+function FavoritesPanel({ personajes, favoritos, onToggleFavorito }) {
+  const personajesFavoritos = personajes.filter((personaje) =>
+    favoritos.includes(personaje.id)
+  );
+
+  return (
+    <aside className="favorites">
+      <h2>Mis favoritos ({favoritos.length})</h2>
+
+      {personajesFavoritos.length === 0 ? (
+        <p>Aún no tienes favoritos.</p>
+      ) : (
+        personajesFavoritos.map((personaje) => (
+          <div className="favorite-item" key={personaje.id}>
+            <img src={personaje.image} alt={personaje.name} />
+            <span>{personaje.name}</span>
+
+            <button onClick={() => onToggleFavorito(personaje.id)}>
+              Quitar
+            </button>
+          </div>
+        ))
+      )}
+    </aside>
+  );
+}
+
+export default FavoritesPanel;
