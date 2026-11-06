@@ -1,17 +1,6 @@
-import { useState } from 'react';
 import PersonajeCard from './PersonajeCard';
 
-function PersonajeList({ personajes }) {
-  const [favoritos, setFavoritos] = useState([]);
-
-  function toggleFavorito(id) {
-    setFavoritos((actuales) =>
-      actuales.includes(id)
-        ? actuales.filter((favorito) => favorito !== id)
-        : [...actuales, id]
-    );
-  }
-
+function PersonajeList({ personajes, favoritos, onToggleFavorito }) {
   return (
     <section>
       <h2>Personajes</h2>
@@ -23,7 +12,7 @@ function PersonajeList({ personajes }) {
             key={personaje.id}
             personaje={personaje}
             esFavorito={favoritos.includes(personaje.id)}
-            onToggleFavorito={toggleFavorito}
+            onToggleFavorito={onToggleFavorito}
           />
         ))}
       </div>
